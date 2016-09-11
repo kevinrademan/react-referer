@@ -1,7 +1,7 @@
-# react-referrer
-Isomorphic function to load the referrer
+# react-referer
+Isomorphic function to load the referer
 
-## Isomorphic cookies!
+## Isomorphic referer!
 You can also plug it directly with a Node.js request by adding just before the renderToString: `var unplug = reactReferer.plugToRequest(req, res);`<br />
 
 ## Download
