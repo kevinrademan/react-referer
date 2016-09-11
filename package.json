@@ -1,0 +1,39 @@
+{
+  "name": "react-referer",
+  "version": "1.0.0",
+  "description": "Isomorphic react referer",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "dist/react-referer.js",
+    "dist/react-referer.min.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": "",
+  "keywords": [
+    "isomorphic",
+    "referrer",
+    "react"
+  ],
+  "author": "Kevin Rademan <kevin@versa.co.za>",
+  "license": "MIT",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "mkdirp dist && browserify index.js > dist/react-referer.js && uglifyjs dist/react-referer.js -o dist/react-referer.min.js",
+    "test": "node_modules/.bin/minijasminenode2 test.js"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "browserify": "^9.0.3",
+    "jasmine-core": "^2.4.1",
+    "minijasminenode2": "^1.0.0",
+    "mkdirp": "^0.5.1",
+    "rewire": "^2.5.1",
+    "rimraf": "^2.5.2",
+    "uglify-js": "^2.4.17"
+  }
+}

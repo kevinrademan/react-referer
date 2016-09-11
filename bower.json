@@ -1,0 +1,22 @@
+{
+  "name": "react-referer",
+  "main": "dist/react-referer.js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/kevinrademan/react-referer",
+  "authors": [
+    "Kevin Rademan <kevin@versa.co.za>"
+  ],
+  "description": "Isomorphic react referer",
+  "keywords": [
+    "referer",
+    "referrer",
+    "react",
+    "reactjs",
+    "jsx"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules"
+  ],
+  "license": "MIT"
+}
