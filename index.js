@@ -1,16 +1,10 @@
 var _rawHeaders = {};
-var _res = undefined;
 var _doc = undefined;
-if(this.document !== undefined) {
-  _doc=this.document;
+try{
+  _doc = document;
 }
-
-function _isResWritable() {
-  if(!_res)
-    return false;
-  if(_res.headersSent === true)
-    return false;
-  return true;
+catch(e) { 
+  // Just ignore the error 
 }
 
 function referer() {
@@ -20,17 +14,16 @@ function referer() {
   return _doc.referrer;
 }
 
-function plugToRequest(req, res) {
+function plugToRequest(req) {
   if (req.header) {
-    _rawHeaders = req.header;
+    _rawHeaders = {
+      referer: req.header('referer')
+    };
   } else if (req.headers) {
-    _rawHeaders = req.headers;
+    _rawHeaders = {
+      referer: req.headers('referer')
+    };
   } else {
-    _rawHeaders = {};
-  }
-  _res = res;
-  return function unplug() {
-    _res = null;
     _rawHeaders = {};
   }
 }

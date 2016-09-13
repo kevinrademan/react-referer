@@ -18,8 +18,8 @@ describe('ReactReferer', function () {
     });
 
     it('should read the referer', function () {
-      clientReferer.__set__('_doc', { referrer: 'test' });
-      expect(clientReferer.referer()).toBe('test');
+      clientReferer.__set__('_doc', { referrer: 'http://test.com' });
+      expect(clientReferer.referer()).toBe('http://test.com');
     });
   });
 
@@ -37,43 +37,18 @@ describe('ReactReferer', function () {
 
     describe('plugToRequest', function () {
       it('should load the request header', function () {
-        serverHeader.plugToRequest({ header: { referer: 123 } });
-        expect(serverHeader.referer()).toBe(123);
+        serverHeader.plugToRequest({ header: function(name){ return 'http://test.com';} });
+        expect(serverHeader.referer()).toBe('http://test.com');
       });
 
       it('should load the request headers', function () {
-        serverHeader.plugToRequest({ headers: { referer: 123 } });
-        expect(serverHeader.referer()).toBe(123);
+        serverHeader.plugToRequest({ headers: function(name){ return 'http://test.com';} });
+        expect(serverHeader.referer()).toBe('http://test.com');
       });
 
       it('should return undefined when header not set', function () {
-        serverHeader.plugToRequest({});
+        serverHeader.plugToRequest({ header: function(name){ return undefined;} });
         expect(serverHeader.referer()).toBeUndefined();
-      });
-    });
-
-    describe('unplug', function () {
-      it('should return an unplug function', function () {
-        var unplug = serverHeader.plugToRequest({ headers: { referer: 'test' } });
-        expect(typeof unplug).toBe('function');
-      });
-
-      it('should set _res private variable when plugToRequest is called', function () {
-        var req = { headers: { referer: 'test' } }
-        var res = { headersSent: false }
-        var unplug = serverHeader.plugToRequest(req, res);
-        expect(serverHeader.__get__('_res')).toBe(res);
-      });
-
-      it('should clear reference to response cookie when called', function () {
-        var req = { headers: { referer: 'test' } }
-        var res = { headersSent: false }
-        var unplug = serverHeader.plugToRequest(req, res);
-        expect(serverHeader.referer()).toBe('test');
-        expect(serverHeader.__get__('_res')).toBe(res);
-        unplug();
-        expect(serverHeader.referer()).toBeUndefined();
-        expect(serverHeader.__get__('_res')).toBe(null);
       });
     });
   });
