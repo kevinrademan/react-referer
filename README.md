@@ -2,12 +2,10 @@
 Isomorphic function to load the referer
 
 ## Isomorphic referer!
-You can also plug it directly with a Node.js request by adding just before the renderToString: `var unplug = reactReferer.plugToRequest(req, res);`<br />
+You can also plug it directly with a Node.js request by adding just before the renderToString: `reactReferer.plugToRequest(req);`<br />
 
 ## Download
 NPM: `npm install react-referer`<br />
-Bower: `bower install react-referer`<br />
-CDN: `https://cdnjs.cloudflare.com/ajax/libs/react-referer/1.0.0/react-referer.min.js`
 
 # Examples
 
